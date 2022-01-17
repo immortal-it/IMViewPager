@@ -13,6 +13,8 @@ public protocol IMCarouselViewControllerDataSource: AnyObject {
     func numberOfItems(in carouselViewController: IMCarouselViewController) -> Int
 
     func carouselViewController(_ carouselViewController: IMCarouselViewController, viewControllerForItemAt index: Int) -> UIViewController
+    
+    func carouselViewController(_ carouselViewController: IMCarouselViewController, didPresentWith index: Int)
 }
 
 open class IMCarouselViewController: UIViewController, IMPageViewControllerDataSource, IMPageViewControllerDelegate {
@@ -144,6 +146,10 @@ open class IMCarouselViewController: UIViewController, IMPageViewControllerDataS
 
     open func pageViewControllerDidEndDrag(_ currentController: IMPageViewController) {
         delay()
+    }
+    
+    open func pageViewController(_ pageViewController: IMPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        dataSource?.carouselViewController(self, didPresentWith: pageViewController.currentController?.indexOfCarousel ?? 0)
     }
 
 
