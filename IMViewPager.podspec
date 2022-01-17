@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name = 'MASearch'
+  s.name = 'IMViewPager'
   s.version = '1.0'
   s.license = { :type => 'MIT', :file => 'LICENSE' }
   s.homepage = 'https://github.com/immortal-it'
