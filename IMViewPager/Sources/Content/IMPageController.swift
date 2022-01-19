@@ -9,11 +9,11 @@ import UIKit
 
 class IMPageController {
     
-    let viewController: UIViewController
-            
     let containerView = UIView()
-    
-    var number: Int
+
+    let viewController: UIViewController
+                
+    let number: Int
     
     init(_ viewController: UIViewController, number: Int) {
         self.viewController = viewController
@@ -32,7 +32,7 @@ class IMPageController {
         containerView.superview !== nil
     }
     
-    func addToParent(_ pageViewController: IMPageViewController, in parentView: UIView) {
+    func addToParent(_ pageViewController: UIViewController, in parentView: UIView) {
         containerView.frame = CGRect(origin: .zero, size: parentView.bounds.size)
         containerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         containerView.isUserInteractionEnabled = true

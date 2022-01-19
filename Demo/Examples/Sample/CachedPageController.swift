@@ -12,7 +12,7 @@ class CachedPageController: IMPageViewController, IMPageViewControllerDataSource
      
     private let indexViewControllerCache = NSCache<NSString, IndexViewController>()
 
-    private let maxIndex = 5
+    private let maxIndex = 8
 
     
     
@@ -20,7 +20,6 @@ class CachedPageController: IMPageViewController, IMPageViewControllerDataSource
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        supportCache = false
         dataSource = self
         setController(indexViewController(forPage: 0))
     }
@@ -60,20 +59,18 @@ class CachedPageController: IMPageViewController, IMPageViewControllerDataSource
     // MARK: - PageViewControllerDataSource
     
     func pageViewController(_ pageViewController: IMPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        let index = index(forViewController: viewController)
-        if index > 0 {
-            return indexViewController(forPage: index - 1)
-        } else {
-            return nil
+        guard let currentController = viewController as? IndexViewController else { return nil }
+        if currentController.index < 1 {
+            return indexViewController(forPage: maxIndex - 1)
         }
+        return indexViewController(forPage: currentController.index - 1)
     }
     
     func pageViewController(_ pageViewController: IMPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        let index = index(forViewController: viewController)
-        if index < maxIndex - 1 {
-            return indexViewController(forPage: index + 1)
-        } else {
-            return nil
+        guard let currentController = viewController as? IndexViewController else { return nil }
+        if currentController.index < maxIndex - 1 {
+            return indexViewController(forPage: currentController.index + 1)
         }
+        return indexViewController(forPage: 0)
     }
 }

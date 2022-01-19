@@ -22,7 +22,7 @@ class IndexViewController: UIViewController {
     
     private let colors: [UIColor] = [.red, .blue, .white, .green, .brown]
     
-    private lazy var textLabel: UILabel = {
+    lazy var textLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .black
@@ -40,6 +40,6 @@ class IndexViewController: UIViewController {
             textLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             textLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        textLabel.text = index.description 
+        textLabel.text = index.description
     }
 }

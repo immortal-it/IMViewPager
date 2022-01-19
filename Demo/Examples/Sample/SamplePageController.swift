@@ -10,7 +10,7 @@ import IMViewPager
  
 class SamplePageController: IMPageViewController, IMPageViewControllerDataSource {
      
-    private let maxIndex = 5
+    private let maxIndex = 8
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,11 +20,10 @@ class SamplePageController: IMPageViewController, IMPageViewControllerDataSource
             view.backgroundColor = .white
         }
         dataSource = self
-        delegate = self
-        setController(indexViewController(forPage: 0))
+        setController(indexViewController(forPage: 0), animated: true)
     }
     
-    private func indexViewController(forPage pageIndex: Int) -> IndexViewController {
+    func indexViewController(forPage pageIndex: Int) -> IndexViewController {
         IndexViewController(pageIndex)
     }
 
@@ -34,41 +33,41 @@ class SamplePageController: IMPageViewController, IMPageViewControllerDataSource
     
     func pageViewController(_ pageViewController: IMPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let currentController = viewController as? IndexViewController else { return nil }
-        if currentController.index <= 0 {
-            return indexViewController(forPage: maxIndex)
+        if currentController.index < 1 {
+            return nil
         }
         return indexViewController(forPage: currentController.index - 1)
     }
     
     func pageViewController(_ pageViewController: IMPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let currentController = viewController as? IndexViewController else { return nil }
-        if currentController.index >= maxIndex - 1 {
-            return indexViewController(forPage: 0)
+        if currentController.index < maxIndex - 1 {
+            return indexViewController(forPage: currentController.index + 1)
         }
-        return indexViewController(forPage: currentController.index + 1)
+        return nil
     }
 }
 
 
-
-// MARK: - PageViewControllerDelegate
-
-extension SamplePageController: IMPageViewControllerDelegate {
-    
-    func pageViewController(_ pageViewController: IMPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
-         
+class SampleHorizontalPageController: SamplePageController {
+     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(.horizontal)
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-         
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
-    
-    func pageViewController(_ pageViewController: IMPageViewController, didScrollAfter viewController: UIViewController, pendingViewController: UIViewController, progress: CGFloat) {
-        print("didScrollAfter: ", progress)
+}
 
+
+class SampleVerticalPageController: SamplePageController {
+     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(.vertical)
     }
     
-    func pageViewController(_ pageViewController: IMPageViewController, didScrollBefore viewController: UIViewController, pendingViewController: UIViewController, progress: CGFloat) {
-         print("didScrollBefore: ", progress)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

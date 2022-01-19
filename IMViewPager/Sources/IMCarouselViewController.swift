@@ -3,19 +3,67 @@
 //  IMViewPager
 //
 //  Created by immortal on 2022/1/11
-//  Copyright (c) 2022 manjitech. All rights reserved.
 //
 
 import UIKit
 
 public protocol IMCarouselViewControllerDataSource: AnyObject {
 
+    /// Asks your data source object for the number of items in the carousel view.
+    ///
+    /// - Parameter carouselViewController:
+    ///     The carousel view controller requesting this information.
+    ///
+    /// - Returns:
+    ///     The number of items in carouselViewController.
+    ///
     func numberOfItems(in carouselViewController: IMCarouselViewController) -> Int
 
+    /// Returns the displayed view controller.
+    ///
+    /// - Parameter carouselViewController:
+    ///     The carousel view controller.
+    ///
+    /// - Parameter index:
+    ///     The carousel index.
+    ///
+    /// - Returns:
+    ///     The displayed view controller.
+    ///
     func carouselViewController(_ carouselViewController: IMCarouselViewController, viewControllerForItemAt index: Int) -> UIViewController
     
-    func carouselViewController(_ carouselViewController: IMCarouselViewController, didPresentWith index: Int)
+    /// Called after the cached controller's view is displayed.
+    ///
+    /// - Parameter carouselViewController:
+    ///     The carousel view controller.
+    ///
+    /// - Parameter cachedViewController:
+    ///     The cached view controller to be displayed.
+    ///
+    func carouselViewController(_ carouselViewController: IMCarouselViewController, didConfigure cachedViewController: UIViewController)
 }
+
+public extension IMCarouselViewControllerDataSource {
+    
+    func carouselViewController(_ carouselViewController: IMCarouselViewController, didConfigure cachedViewController: UIViewController) {
+         
+    }
+}
+
+public protocol IMCarouselViewControllerDelegate: AnyObject {
+
+    
+    /// Called after the replace is finished.
+    ///
+    /// - Parameter carouselViewController:
+    ///     The carousel view controller.
+    ///
+    /// - Parameter viewController:
+    ///     The current visible view controller.
+    ///
+    func carouselViewController(_ carouselViewController: IMCarouselViewController, didFinishWith viewController: UIViewController)
+}
+
 
 open class IMCarouselViewController: UIViewController, IMPageViewControllerDataSource, IMPageViewControllerDelegate {
 
@@ -24,43 +72,78 @@ open class IMCarouselViewController: UIViewController, IMPageViewControllerDataS
     private let indexViewControllerCache = NSCache<NSString, UIViewController>()
 
     private let pageViewController = IMPageViewController()
+    
+    private let pageControl = UIPageControl()
 
     open var direction: NavigationDirection = .forward
 
-    public weak var dataSource: IMCarouselViewControllerDataSource?
+    open weak var dataSource: IMCarouselViewControllerDataSource?
+
+    open weak var delegate: IMCarouselViewControllerDelegate?
 
     deinit {
         stop()
     }
 
-    
+    open var isPageControlHidden: Bool = true {
+        didSet {
+            pageControl.isHidden = isPageControlHidden
+        }
+    }
+
 
     // MARK: UIViewController
 
     open override func viewDidLoad() {
         super.viewDidLoad()
+        setSubviews()
+        pageViewController.delegate = self
+        pageViewController.dataSource = self
+        pageControl.addTarget(self, action: #selector(pageControlDidChangeValue(_:)), for: .valueChanged)
+    }
+    
+    open override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
+        if dataSource != nil,
+            pageViewController.currentController == nil {
+            reloadData(false)
+        }
+    }
+    
+    private func setSubviews() {
         addChild(pageViewController)
         pageViewController.view.frame = view.bounds
         pageViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(pageViewController.view)
         pageViewController.didMove(toParent: self)
-        pageViewController.supportCache = false
-        pageViewController.delegate = self
-        pageViewController.dataSource = self
-
-        if dataSource != nil,
-            pageViewController.currentController == nil {
-            reloadData()
+ 
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        pageControl.layer.shadowOpacity = 0.5
+        pageControl.layer.shadowOffset = .zero
+        pageControl.layer.shadowRadius = 10.0
+        view.addSubview(pageControl)
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                pageControl.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                pageControl.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                pageControl.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                pageControl.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
         }
     }
 
-    open func reloadData() {
+    open func reloadData(_ animated: Bool = true) {
         func fetchCurrentPage() {
             pageViewController.setController(
                 indexViewController(forPage: 0),
                 direction: direction,
-                animated: true,
+                animated: animated,
                 completion: nil
             )
         }
@@ -76,6 +159,20 @@ open class IMCarouselViewController: UIViewController, IMPageViewControllerDataS
         } else if numberOfItems == 1 {
             fetchCurrentPage()
         }
+        
+        pageControl.numberOfPages = numberOfItems
+        pageControl.currentPage = 0
+        pageControl.isHidden = numberOfItems < 2 || isPageControlHidden
+    }
+    
+    @objc private func pageControlDidChangeValue(_ sender: UIPageControl) {
+        guard let currentController = pageViewController.currentController else { return }
+        delay()
+        pageViewController.setController(
+            indexViewController(forPage: sender.currentPage),
+            direction: currentController.indexOfCarousel < sender.currentPage ? .forward : .reverse,
+            animated: true
+        )
     }
 
 
@@ -98,6 +195,7 @@ open class IMCarouselViewController: UIViewController, IMPageViewControllerDataS
 
         if let cachedController = indexViewControllerCache.object(forKey: identifier) {
             // Return the cached view controller.
+            dataSource.carouselViewController(self, didConfigure: cachedController)
             return cachedController
         }
         else {
@@ -119,20 +217,23 @@ open class IMCarouselViewController: UIViewController, IMPageViewControllerDataS
 
     open func pageViewController(_ pageViewController: IMPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         let index = index(forViewController: viewController)
-        if index > 0 {
-            return indexViewController(forPage: index - 1)
-        } else {
+        if index < 1 {
             return indexViewController(forPage: numberOfItems - 1)
         }
+        return indexViewController(forPage: index - 1)
     }
 
     open func pageViewController(_ pageViewController: IMPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         let index = index(forViewController: viewController)
         if index < numberOfItems - 1 {
             return indexViewController(forPage: index + 1)
-        } else {
-            return indexViewController(forPage: 0)
         }
+        return indexViewController(forPage: 0)
+    }
+    
+    open func pageViewController(_ pageViewController: IMPageViewController, didFinishWith viewController: UIViewController) {
+        delegate?.carouselViewController(self, didFinishWith: viewController)
+        pageControl.currentPage = viewController.indexOfCarousel
     }
 
 
@@ -146,10 +247,6 @@ open class IMCarouselViewController: UIViewController, IMPageViewControllerDataS
 
     open func pageViewControllerDidEndDrag(_ currentController: IMPageViewController) {
         delay()
-    }
-    
-    open func pageViewController(_ pageViewController: IMPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        dataSource?.carouselViewController(self, didPresentWith: pageViewController.currentController?.indexOfCarousel ?? 0)
     }
 
 
@@ -184,8 +281,13 @@ open class IMCarouselViewController: UIViewController, IMPageViewControllerDataS
     }
 
     private func scheduledTimer(_ timer: Timer) {
-        guard let currentController = pageViewController.currentController else {
-            fatalError("Unexpected view controller type in page view controller.")
+        guard let currentController = pageViewController.currentController,
+              numberOfItems > 1 else {
+            stop()
+            return
+        }
+        guard !pageControl.isTracking else {
+            return
         }
         let index = currentController.indexOfCarousel
         let nextIndex: Int = {

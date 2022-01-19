@@ -1,5 +1,5 @@
 //
-//  TabPageViewController.swift
+//  SegmentedPageController.swift
 //  Demo
 //
 //  Created by immortal on 2022/1/11
@@ -8,7 +8,7 @@
 import UIKit
 import IMViewPager
 
-class SegmentedPageViewController: UIViewController, IMPageViewControllerDataSource, IMPageViewControllerDelegate {
+class SegmentedPageController: UIViewController, IMPageViewControllerDataSource, IMPageViewControllerDelegate {
     
     private let indexViewControllerCache = NSCache<NSString, IndexViewController>()
 
@@ -34,10 +34,11 @@ class SegmentedPageViewController: UIViewController, IMPageViewControllerDataSou
         super.viewDidLoad()
          
         loadSubviews()
-        pageController.supportCache = false
+        
         pageController.delegate = self
         pageController.dataSource = self
-        pageController.setController(indexViewController(forPage: 0))
+        pageController.bounces = false
+        pageController.setController(indexViewController(forPage: 0), animated: false)
         
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(segmentedControlDidChangeValue(_:)), for: .valueChanged)
@@ -83,27 +84,19 @@ class SegmentedPageViewController: UIViewController, IMPageViewControllerDataSou
     }
     
     @objc private func segmentedControlDidChangeValue(_ sender: UISegmentedControl) {
-        if let currentController = pageController.currentController as? IndexViewController {
-            pageController.setController(
-                indexViewController(forPage: sender.selectedSegmentIndex),
-                direction: currentController.index > sender.selectedSegmentIndex ? .reverse : .forward,
-                animated: true
-            )
-        } else {
-            pageController.setController(indexViewController(forPage: sender.selectedSegmentIndex))
+        guard let currentController = pageController.currentController as? IndexViewController else {
+            fatalError("Unexpected view controller type in page view controller.")
         }
+        pageController.setController(
+            indexViewController(forPage: sender.selectedSegmentIndex),
+            direction: currentController.index > sender.selectedSegmentIndex ? .reverse : .forward,
+            animated: true
+        )
     }
 
      
     
     // MARK: Convenience
-     
-    private func index(forViewController viewController: UIViewController) -> Int {
-        guard let viewController = viewController as? IndexViewController else {
-            fatalError("Unexpected view controller type in page view controller.")
-        }
-        return viewController.index
-    }
     
     private func indexViewController(forPage pageIndex: Int) -> IndexViewController {
         let identifier = String(describing: pageIndex) as NSString
@@ -123,60 +116,39 @@ class SegmentedPageViewController: UIViewController, IMPageViewControllerDataSou
             return controller
         }
     }
- 
 
+    
 
     // MARK: - PageViewControllerDataSource
     
     func pageViewController(_ pageViewController: IMPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let currentController = viewController as? IndexViewController else { return nil }
-        if currentController.index <= 0 {
+        guard let currentController = pageViewController.currentController as? IndexViewController else {
+            fatalError("Unexpected view controller type in page view controller.")
+        }
+        if currentController.index < 1 {
             return nil
         }
         return indexViewController(forPage: currentController.index - 1)
     }
     
     func pageViewController(_ pageViewController: IMPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let currentController = viewController as? IndexViewController else { return nil }
-        if currentController.index >= maxIndex - 1 {
-            return nil
+        guard let currentController = pageViewController.currentController as? IndexViewController else {
+            fatalError("Unexpected view controller type in page view controller.")
         }
-        return indexViewController(forPage: currentController.index + 1)
+        if currentController.index < maxIndex - 1 {
+            return indexViewController(forPage: currentController.index + 1)
+        }
+        return nil
     }
- 
-
+     
+    
 
     // MARK: - PageViewControllerDelegate
-
     
-    func pageViewController(
-        _ pageViewController: IMPageViewController,
-        didFinishAnimating finished: Bool,
-        previousViewControllers: [UIViewController],
-        transitionCompleted completed: Bool
-    ) {
-        if let currentController = pageViewController.currentController as? IndexViewController {
-            segmentedControl.selectedSegmentIndex = currentController.index
+    func pageViewController(_ pageViewController: IMPageViewController, didFinishWith viewController: UIViewController) {
+        guard let currentController = pageViewController.currentController as? IndexViewController else {
+            fatalError("Unexpected view controller type in page view controller.")
         }
-    }
-    
-    func pageViewController(
-        _ pageViewController: IMPageViewController,
-        didScrollAfter viewController: UIViewController,
-        pendingViewController: UIViewController, progress: CGFloat
-    ) {
-        if progress == 1.0, let currentController = pendingViewController as? IndexViewController {
-            segmentedControl.selectedSegmentIndex = currentController.index
-        }
-    }
-    
-    func pageViewController(
-        _ pageViewController: IMPageViewController,
-        didScrollBefore viewController: UIViewController,
-        pendingViewController: UIViewController, progress: CGFloat
-    ) {
-        if progress == 1.0, let currentController = pendingViewController as? IndexViewController {
-            segmentedControl.selectedSegmentIndex = currentController.index
-        }
+        segmentedControl.selectedSegmentIndex = currentController.index
     }
 }

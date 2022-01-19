@@ -3,7 +3,6 @@
 //  IMViewPager
 //
 //  Created by immortal on 2022/1/14
-//  Copyright (c) 2022 manjitech. All rights reserved.
 //
 
 import Foundation
@@ -44,6 +43,6 @@ private extension String {
         if let bundleID = Bundle.main.bundleIdentifier {
              return UnsafeRawPointer(bitPattern: "\(bundleID).\(lowercased())".hashValue)
         }
-        return UnsafeRawPointer(bitPattern: "com.IMIMViewPager.\(lowercased())".hashValue)
+        return UnsafeRawPointer(bitPattern: "com.basekit.\(lowercased())".hashValue)
     }
 }

@@ -30,7 +30,7 @@ class AppViewController: UITableViewController {
              
         ]),
         SectionModel(title: "Segment", elements: [
-            ("SegmentedPage", SegmentedPageViewController.self)
+            ("SegmentedPage", SegmentedPageController.self)
         ])
     ]
     

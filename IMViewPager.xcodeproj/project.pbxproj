@@ -15,18 +15,17 @@
 		5C43D14826C0DE5D009049B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C43D14626C0DE5D009049B9 /* Main.storyboard */; };
 		5C43D14A26C0DE5E009049B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C43D14926C0DE5E009049B9 /* Assets.xcassets */; };
 		5C43D14D26C0DE5E009049B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C43D14B26C0DE5E009049B9 /* LaunchScreen.storyboard */; };
-		5C43D15826C0FFFA009049B9 /* IMPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C43D15726C0FFFA009049B9 /* IMPageViewController.swift */; };
-		5C43D15A26C1003D009049B9 /* IMPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C43D15926C1003D009049B9 /* IMPageController.swift */; };
 		5C597D12278D461E00BE126C /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C597D11278D461E00BE126C /* AppViewController.swift */; };
 		5C597D15278D46F400BE126C /* SamplePageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C597D14278D46F400BE126C /* SamplePageController.swift */; };
-		5C597D17278D49F800BE126C /* SampleHorizontalPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C597D16278D49F800BE126C /* SampleHorizontalPageController.swift */; };
 		5C597D19278D4DA800BE126C /* CachedPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C597D18278D4DA800BE126C /* CachedPageController.swift */; };
 		5C597D1B278D520E00BE126C /* CarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C597D1A278D520E00BE126C /* CarouselViewController.swift */; };
-		5C597D1D278D536D00BE126C /* IMCarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C597D1C278D536D00BE126C /* IMCarouselViewController.swift */; };
-		5C597D20278D682800BE126C /* ForwardCarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C597D1F278D682800BE126C /* ForwardCarouselViewController.swift */; };
-		5C597D22278D683300BE126C /* ReverseCarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C597D21278D683300BE126C /* ReverseCarouselViewController.swift */; };
-		5C597D24278D77F800BE126C /* SegmentedPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C597D23278D77F800BE126C /* SegmentedPageViewController.swift */; };
-		5C597DA527917C0300BE126C /* Runtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C597DA427917C0300BE126C /* Runtime.swift */; };
+		5C597D24278D77F800BE126C /* SegmentedPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C597D23278D77F800BE126C /* SegmentedPageController.swift */; };
+		5CAF7C0C27984FE3002C3F07 /* IMCarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF7C0827984FE3002C3F07 /* IMCarouselViewController.swift */; };
+		5CAF7C0D27984FE3002C3F07 /* IMPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF7C0927984FE3002C3F07 /* IMPageViewController.swift */; };
+		5CAF7C0F27984FE3002C3F07 /* Runtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF7C0B27984FE3002C3F07 /* Runtime.swift */; };
+		5CAF7C142798500E002C3F07 /* IMPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF7C112798500E002C3F07 /* IMPageController.swift */; };
+		5CAF7C152798500E002C3F07 /* IMPageScrollController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF7C122798500E002C3F07 /* IMPageScrollController.swift */; };
+		5CAF7C162798500E002C3F07 /* IMPageContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CAF7C132798500E002C3F07 /* IMPageContentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,18 +63,19 @@
 		5C43D14926C0DE5E009049B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5C43D14C26C0DE5E009049B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5C43D14E26C0DE5E009049B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5C43D15726C0FFFA009049B9 /* IMPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMPageViewController.swift; sourceTree = "<group>"; };
-		5C43D15926C1003D009049B9 /* IMPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMPageController.swift; sourceTree = "<group>"; };
 		5C597D11278D461E00BE126C /* AppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
 		5C597D14278D46F400BE126C /* SamplePageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SamplePageController.swift; sourceTree = "<group>"; };
-		5C597D16278D49F800BE126C /* SampleHorizontalPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleHorizontalPageController.swift; sourceTree = "<group>"; };
 		5C597D18278D4DA800BE126C /* CachedPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedPageController.swift; sourceTree = "<group>"; };
 		5C597D1A278D520E00BE126C /* CarouselViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewController.swift; sourceTree = "<group>"; };
-		5C597D1C278D536D00BE126C /* IMCarouselViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMCarouselViewController.swift; sourceTree = "<group>"; };
-		5C597D1F278D682800BE126C /* ForwardCarouselViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForwardCarouselViewController.swift; sourceTree = "<group>"; };
-		5C597D21278D683300BE126C /* ReverseCarouselViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverseCarouselViewController.swift; sourceTree = "<group>"; };
-		5C597D23278D77F800BE126C /* SegmentedPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPageViewController.swift; sourceTree = "<group>"; };
-		5C597DA427917C0300BE126C /* Runtime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Runtime.swift; sourceTree = "<group>"; };
+		5C597D23278D77F800BE126C /* SegmentedPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPageController.swift; sourceTree = "<group>"; };
+		5CAF7C0627984F76002C3F07 /* IMViewPager.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = IMViewPager.podspec; sourceTree = "<group>"; };
+		5CAF7C0727984F7C002C3F07 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		5CAF7C0827984FE3002C3F07 /* IMCarouselViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMCarouselViewController.swift; sourceTree = "<group>"; };
+		5CAF7C0927984FE3002C3F07 /* IMPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPageViewController.swift; sourceTree = "<group>"; };
+		5CAF7C0B27984FE3002C3F07 /* Runtime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Runtime.swift; sourceTree = "<group>"; };
+		5CAF7C112798500E002C3F07 /* IMPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPageController.swift; sourceTree = "<group>"; };
+		5CAF7C122798500E002C3F07 /* IMPageScrollController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPageScrollController.swift; sourceTree = "<group>"; };
+		5CAF7C132798500E002C3F07 /* IMPageContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPageContentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +107,7 @@
 		5C43D12526C0DE33009049B9 = {
 			isa = PBXGroup;
 			children = (
+				5CAF7C0527984F56002C3F07 /* Development */,
 				5C43D13126C0DE33009049B9 /* IMViewPager */,
 				5C43D13F26C0DE5D009049B9 /* Demo */,
 				5C43D13026C0DE33009049B9 /* Products */,
@@ -155,10 +156,10 @@
 		5C43D15626C0FFCD009049B9 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				5C43D15726C0FFFA009049B9 /* IMPageViewController.swift */,
-				5C43D15926C1003D009049B9 /* IMPageController.swift */,
-				5C597D1C278D536D00BE126C /* IMCarouselViewController.swift */,
-				5C597DA427917C0300BE126C /* Runtime.swift */,
+				5CAF7C102798500E002C3F07 /* Content */,
+				5CAF7C0827984FE3002C3F07 /* IMCarouselViewController.swift */,
+				5CAF7C0927984FE3002C3F07 /* IMPageViewController.swift */,
+				5CAF7C0B27984FE3002C3F07 /* Runtime.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -178,8 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				5C597D1A278D520E00BE126C /* CarouselViewController.swift */,
-				5C597D1F278D682800BE126C /* ForwardCarouselViewController.swift */,
-				5C597D21278D683300BE126C /* ReverseCarouselViewController.swift */,
 			);
 			path = Carousel;
 			sourceTree = "<group>";
@@ -188,7 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				5C597D14278D46F400BE126C /* SamplePageController.swift */,
-				5C597D16278D49F800BE126C /* SampleHorizontalPageController.swift */,
 				5C597D18278D4DA800BE126C /* CachedPageController.swift */,
 			);
 			path = Sample;
@@ -197,7 +195,7 @@
 		5C597DA72791826800BE126C /* SegmentedPage */ = {
 			isa = PBXGroup;
 			children = (
-				5C597D23278D77F800BE126C /* SegmentedPageViewController.swift */,
+				5C597D23278D77F800BE126C /* SegmentedPageController.swift */,
 			);
 			path = SegmentedPage;
 			sourceTree = "<group>";
@@ -211,6 +209,25 @@
 				5C43D14E26C0DE5E009049B9 /* Info.plist */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		5CAF7C0527984F56002C3F07 /* Development */ = {
+			isa = PBXGroup;
+			children = (
+				5CAF7C0727984F7C002C3F07 /* LICENSE */,
+				5CAF7C0627984F76002C3F07 /* IMViewPager.podspec */,
+			);
+			name = Development;
+			sourceTree = "<group>";
+		};
+		5CAF7C102798500E002C3F07 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				5CAF7C112798500E002C3F07 /* IMPageController.swift */,
+				5CAF7C122798500E002C3F07 /* IMPageScrollController.swift */,
+				5CAF7C132798500E002C3F07 /* IMPageContentViewController.swift */,
+			);
+			path = Content;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,7 +292,7 @@
 				TargetAttributes = {
 					5C43D12E26C0DE33009049B9 = {
 						CreatedOnToolsVersion = 12.5;
-						LastSwiftMigration = 1250;
+						LastSwiftMigration = 1320;
 					};
 					5C43D13D26C0DE5D009049B9 = {
 						CreatedOnToolsVersion = 12.5;
@@ -326,10 +343,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C597DA527917C0300BE126C /* Runtime.swift in Sources */,
-				5C597D1D278D536D00BE126C /* IMCarouselViewController.swift in Sources */,
-				5C43D15A26C1003D009049B9 /* IMPageController.swift in Sources */,
-				5C43D15826C0FFFA009049B9 /* IMPageViewController.swift in Sources */,
+				5CAF7C152798500E002C3F07 /* IMPageScrollController.swift in Sources */,
+				5CAF7C162798500E002C3F07 /* IMPageContentViewController.swift in Sources */,
+				5CAF7C142798500E002C3F07 /* IMPageController.swift in Sources */,
+				5CAF7C0C27984FE3002C3F07 /* IMCarouselViewController.swift in Sources */,
+				5CAF7C0F27984FE3002C3F07 /* Runtime.swift in Sources */,
+				5CAF7C0D27984FE3002C3F07 /* IMPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,15 +356,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5C597D20278D682800BE126C /* ForwardCarouselViewController.swift in Sources */,
 				5C597D19278D4DA800BE126C /* CachedPageController.swift in Sources */,
-				5C597D17278D49F800BE126C /* SampleHorizontalPageController.swift in Sources */,
 				5C597D12278D461E00BE126C /* AppViewController.swift in Sources */,
 				5C597D15278D46F400BE126C /* SamplePageController.swift in Sources */,
 				5C43D14126C0DE5D009049B9 /* AppDelegate.swift in Sources */,
 				5C597D1B278D520E00BE126C /* CarouselViewController.swift in Sources */,
-				5C597D24278D77F800BE126C /* SegmentedPageViewController.swift in Sources */,
-				5C597D22278D683300BE126C /* ReverseCarouselViewController.swift in Sources */,
+				5C597D24278D77F800BE126C /* SegmentedPageController.swift in Sources */,
 				5C14C88D26C3BCE700999AD3 /* IndexViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,6 +523,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 202201192206;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -519,6 +536,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.manjitech.IMViewPager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -534,6 +552,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 202201192206;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -546,6 +565,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.manjitech.IMViewPager;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -558,9 +578,11 @@
 		5C43D15026C0DE5E009049B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_TEAM = GDMD4XZ24N;
 				INFOPLIST_FILE = Demo/Resource/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -568,6 +590,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.manjitech.hoe.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -578,9 +601,11 @@
 		5C43D15126C0DE5E009049B9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0;
 				DEVELOPMENT_TEAM = GDMD4XZ24N;
 				INFOPLIST_FILE = Demo/Resource/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -588,6 +613,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.manjitech.hoe.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

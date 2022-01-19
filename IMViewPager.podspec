@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'IMViewPager'
-  s.version = '1.0'
+  s.version = '0.0.1'
   s.license = { :type => 'MIT', :file => 'LICENSE' }
   s.homepage = 'https://github.com/immortal-it'
   s.authors = { 'immortal' => 'immortal.me@qq.com' }
