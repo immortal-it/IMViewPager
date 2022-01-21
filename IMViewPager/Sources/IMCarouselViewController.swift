@@ -87,7 +87,7 @@ open class IMCarouselViewController: UIViewController, IMPageViewControllerDataS
 
     open var isPageControlHidden: Bool = true {
         didSet {
-            pageControl.isHidden = isPageControlHidden
+            pageControl.isHidden = isPageControlHidden || numberOfItems < 2
         }
     }
 
@@ -182,6 +182,10 @@ open class IMCarouselViewController: UIViewController, IMPageViewControllerDataS
     public final var numberOfItems: Int {
         dataSource?.numberOfItems(in: self) ?? 0
     }
+    
+    public final var currentPage: Int {
+        pageControl.currentPage
+    }
 
     private func index(forViewController viewController: UIViewController) -> Int {
         viewController.indexOfCarousel
@@ -232,8 +236,8 @@ open class IMCarouselViewController: UIViewController, IMPageViewControllerDataS
     }
     
     open func pageViewController(_ pageViewController: IMPageViewController, didFinishWith viewController: UIViewController) {
-        delegate?.carouselViewController(self, didFinishWith: viewController)
         pageControl.currentPage = viewController.indexOfCarousel
+        delegate?.carouselViewController(self, didFinishWith: viewController)
     }
 
 
