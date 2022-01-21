@@ -1,5 +1,5 @@
 //
-//  IMPageScrollController2.swift
+//  IMPageScrollController.swift
 //  IMViewPager
 //
 //  Created by immortal on 2022/1/17
@@ -51,6 +51,7 @@ class IMPageScrollController: UIViewController, UIScrollViewDelegate, IMPageCont
         loadSubviews()
         updateBounce()
         scrollView.delegate = self
+        automaticallyAdjustsScrollViewInsets = false
     }
     
     private func loadSubviews() {
@@ -61,8 +62,11 @@ class IMPageScrollController: UIViewController, UIScrollViewDelegate, IMPageCont
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        automaticallyAdjustsScrollViewInsets = false
+        updateContent(for: scrollView)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         updateContent(for: scrollView)
         scrollToCurrent()
     }
@@ -100,7 +104,7 @@ class IMPageScrollController: UIViewController, UIScrollViewDelegate, IMPageCont
             return
         }
         isAnimating = animated
-        if let controller = controller {            
+        if let controller = controller {
             let pageIndex: Int = {
                 switch direction {
                     case .forward:
@@ -157,33 +161,30 @@ class IMPageScrollController: UIViewController, UIScrollViewDelegate, IMPageCont
                 updateContent(for: scrollView)
 
                 if animated {
-                    let contentOffset: CGPoint = {
+                    offsetIndex = {
                         switch direction {
-                            case .forward:
-                                switch navigationOrientation {
-                                    case .horizontal:
-                                        return CGPoint(x: scrollOffset - scrollWidth, y: 0)
-                                    case .vertical:
-                                        return CGPoint(x: 0, y: scrollOffset - scrollWidth)
-                                }
-                            case .reverse:
-                                switch navigationOrientation {
-                                    case .horizontal:
-                                        return CGPoint(x: scrollOffset + scrollWidth, y: 0)
-                                    case .vertical:
-                                        return CGPoint(x: 0, y: scrollOffset + scrollWidth)
-                                }
+                            case .forward: return -1
+                            case .reverse: return  1
+                        }
+                    }()
+                    let origin: CGPoint = {
+                        switch navigationOrientation {
+                            case .horizontal:
+                                return CGPoint(x: scrollWidth * CGFloat(pageController.number - offsetIndex), y: 0)
+                            case .vertical:
+                                return CGPoint(x: 0, y: scrollWidth * CGFloat(pageController.number - offsetIndex))
                         }
                     }()
                     preventsFuncForScrollViewDidScroll = true
-                    scrollView.setContentOffset(contentOffset, animated: false)
-                    preventsFuncForScrollViewDidScroll = false
+                    pageController.containerView.frame.origin = origin
 
                     if isViewLoaded && view.window != nil {
                         scrollToCurrent()
                     }
+                } else {
+                    offsetIndex = 0
                 }
-            }
+             }
         } else {
             
             guard let current = current else {
@@ -216,7 +217,7 @@ class IMPageScrollController: UIViewController, UIScrollViewDelegate, IMPageCont
                 offsetIndex = 0
                 scrollToCurrent()
                 removeInvalidVisiblePageControllers()
-            } 
+            }
         }
     }
 
@@ -325,6 +326,11 @@ class IMPageScrollController: UIViewController, UIScrollViewDelegate, IMPageCont
             preventsFuncForScrollViewDidScroll = true
             scrollView.contentInset = contentInset
             preventsFuncForScrollViewDidScroll = false
+        }
+        
+        if let current = current {
+            let fixedOffset = current.containerView.frame.origin.x.truncatingRemainder(dividingBy: scrollWidth)
+            print(fixedOffset)
         }
     }
     
