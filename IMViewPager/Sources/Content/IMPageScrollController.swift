@@ -71,6 +71,13 @@ class IMPageScrollController: UIViewController, UIScrollViewDelegate, IMPageCont
         scrollToCurrent()
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: { [unowned self] _ in
+            self.scrollToCurrent()
+        }, completion: nil)
+    }
+    
     
     
     // MARK: - IMPageContentViewController
@@ -326,11 +333,6 @@ class IMPageScrollController: UIViewController, UIScrollViewDelegate, IMPageCont
             preventsFuncForScrollViewDidScroll = true
             scrollView.contentInset = contentInset
             preventsFuncForScrollViewDidScroll = false
-        }
-        
-        if let current = current {
-            let fixedOffset = current.containerView.frame.origin.x.truncatingRemainder(dividingBy: scrollWidth)
-            print(fixedOffset)
         }
     }
     
