@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version = '0.0.1'
   s.license = { :type => 'MIT', :file => 'LICENSE' }
   s.homepage = 'https://github.com/immortal-it'
-  s.authors = { 'immortal' => 'immortal.me@qq.com' }
+  s.authors = { 'immortal' => 'immortal.me@gmail.com' }
   s.summary = 'IMViewPager in Swift.'
   
   s.source = { :git => 'https://github.com/immortal-it/IMViewPager.git', :tag => s.version }

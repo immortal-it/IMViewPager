@@ -68,6 +68,8 @@
 		5C597D18278D4DA800BE126C /* CachedPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedPageController.swift; sourceTree = "<group>"; };
 		5C597D1A278D520E00BE126C /* CarouselViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselViewController.swift; sourceTree = "<group>"; };
 		5C597D23278D77F800BE126C /* SegmentedPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedPageController.swift; sourceTree = "<group>"; };
+		5C9461A427EF46CC00566F32 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		5C9461A527EF474200566F32 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5CAF7C0627984F76002C3F07 /* IMViewPager.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = IMViewPager.podspec; sourceTree = "<group>"; };
 		5CAF7C0727984F7C002C3F07 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		5CAF7C0827984FE3002C3F07 /* IMCarouselViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMCarouselViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +218,8 @@
 			children = (
 				5CAF7C0727984F7C002C3F07 /* LICENSE */,
 				5CAF7C0627984F76002C3F07 /* IMViewPager.podspec */,
+				5C9461A427EF46CC00566F32 /* Package.swift */,
+				5C9461A527EF474200566F32 /* README.md */,
 			);
 			name = Development;
 			sourceTree = "<group>";
@@ -523,7 +527,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202201192206;
+				CURRENT_PROJECT_VERSION = 202203262111;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -552,7 +556,7 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 202201192206;
+				CURRENT_PROJECT_VERSION = 202203262111;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
