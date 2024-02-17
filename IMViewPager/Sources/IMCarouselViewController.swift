@@ -208,7 +208,7 @@ open class IMCarouselViewController: UIViewController, IMPageViewControllerDataS
             controller.indexOfCarousel = pageIndex
             
             // Cache the view controller so it can be reused.
-            indexViewControllerCache.setObject(controller, forKey: identifier)
+            // indexViewControllerCache.setObject(controller, forKey: identifier)
 
             // Return the newly created and cached view controller.
             return controller
